@@ -2,31 +2,23 @@ pipeline {
     agent any
     
     environment {
-        GITHUB_REPO = 'https://github.com/atamankina/hello-jenkins-app.git'
+        GITHUB_REPO = 'https://github.com/Lyna05/hello-jenkins-app.git'
     }
     
-    stages {
-        
-        stage('Checkout') {
-            
+    stages {        
+        stage('Checkout') {           
             steps {
                 git url: "${GITHUB_REPO}", branch: 'main'
-            }
-            
-        }
-        
-        stage('Build') {
-            
+            }            
+        }       
+        stage('Build') {   
             steps {
                 echo 'Building the app...'
                 sh 'cat app.txt'
                 echo 'Build successful.'
-            }
-            
+            }    
         }
-        
-        stage('Test') {
-            
+        stage('Test') {   
             steps {
                 echo 'Testing'
                 script {
@@ -36,21 +28,14 @@ pipeline {
                     }
                 }
                 echo 'Testing successful'
-            }
-            
-        }
-        
-        stage('Package') {
-            
+            }    
+        }        
+        stage('Package') {           
             steps {
                 echo 'Packaging...'
                 sh 'tar -cvf app.tar app.txt'
-                echo 'Package successful.'
-                
-            }
-            
-        }
-        
-    }
-    
+                echo 'Package successful.'                
+            }   
+        }    
+    }   
 }
